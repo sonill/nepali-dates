@@ -7,7 +7,19 @@
 
 Community-driven, accurate Nepali calendar (Bikram Sambat) data and conversion utilities. A trustable source for Nepali date calculations with zero dependencies.
 
-Use this package instead of maintaining your own source of datas.
+The ultimate Nepali date conversion library for developers. Convert between Bikram Sambat (BS) and Gregorian dates with 100% accurate, community-maintained calendar data. Perfect for Nepali calendar apps, date converters, and plugins. No dependencies, fully typed, and production-ready.
+
+### Why Use This Package?
+
+Stop maintaining your own Nepali calendar data. This package eliminates the burden of:
+- Manually updating calendar data year after year
+- Debugging date conversion edge cases
+- Verifying data accuracy across multiple sources
+
+**Using JavaScript?** Use the full library with type safety and conversion utilities.
+**Using another language?** Access the calendar data directly via `calendar-data.json` in the [data/](data/) directory. Examples available for Python, PHP, Ruby, Go, and more.
+
+The community maintains the data—you focus on building great features.
 
 ## Website
 
