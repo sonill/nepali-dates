@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Community-driven, accurate Nepali calendar data and conversion utilities for JavaScript and other programming languages">
+    <meta name="keywords" content="nepali calendar, bikram sambat, bs to ad, ad to bs, nepali dates, nepal">
+    <title>Nepali Dates - Accurate BS/AD Calendar Conversion</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #dc143c;
+            --primary-dark: #b01030;
+            --secondary: #003893;
+            --text: #2d3748;
+            --text-light: #4a5568;
+            --bg: #ffffff;
+            --bg-alt: #f7fafc;
+            --border: #e2e8f0;
+            --code-bg: #1a202c;
+            --success: #48bb78;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background: var(--bg);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            padding: 80px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 500px;
+            height: 500px;
+            background: var(--secondary);
+            border-radius: 50%;
+            opacity: 0.1;
+        }
+
+        h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            position: relative;
+        }
+
+        .tagline {
+            font-size: 1.25rem;
+            opacity: 0.95;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 45px;
+            position: relative;
+        }
+
+        .btn {
+            padding: 12px 32px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-block;
+            border: 2px solid transparent;
+        }
+
+        .btn-primary {
+            background: white;
+            color: var(--primary);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border-color: white;
+        }
+
+        .btn-secondary:hover {
+            background: white;
+            color: var(--primary);
+        }
+
+        /* Features */
+        .features {
+            padding: 80px 20px;
+            background: var(--bg-alt);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-icon {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 0.75rem;
+            color: var(--text);
+        }
+
+        .feature-card p {
+            color: var(--text-light);
+        }
+
+        /* Code Section */
+        .code-section {
+            padding: 80px 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--text);
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-light);
+            margin-bottom: 3rem;
+            font-size: 1.1rem;
+        }
+
+        .code-example {
+            background: var(--code-bg);
+            color: #e2e8f0;
+            padding: 2rem;
+            border-radius: 12px;
+            overflow-x: auto;
+            margin-bottom: 2rem;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        }
+
+        .code-example pre {
+            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .keyword {
+            color: #ff79c6;
+        }
+
+        .function {
+            color: #50fa7b;
+        }
+
+        .string {
+            color: #f1fa8c;
+        }
+
+        .comment {
+            color: #6272a4;
+            font-style: italic;
+        }
+
+        .number {
+            color: #bd93f9;
+        }
+
+        /* Languages Section */
+        .languages {
+            padding: 80px 20px;
+            background: var(--bg-alt);
+        }
+
+        .languages-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .language-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            border-left: 4px solid var(--primary);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        .language-card h4 {
+            margin-bottom: 0.5rem;
+            color: var(--text);
+        }
+
+        .language-card p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+
+        /* Stats */
+        .stats {
+            padding: 60px 20px;
+            background: linear-gradient(135deg, var(--secondary) 0%, #002060 100%);
+            color: white;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .stat-card {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            opacity: 0.9;
+            font-size: 1.1rem;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--code-bg);
+            color: #a0aec0;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        footer a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            .tagline {
+                font-size: 1rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .stat-number {
+                font-size: 2rem;
+            }
+        }
+
+        /* Badges */
+        .badges {
+            display: flex;
+            gap: 0.5rem;
+            justify-content: center;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .badge {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <h1>🇳🇵 Nepali Dates</h1>
+            <p class="tagline">Community-driven, accurate Nepali calendar data for developers worldwide</p>
+            <div class="badges">
+                <span class="badge">Zero Dependencies</span>
+                <span class="badge">TypeScript</span>
+                <span class="badge">101 Years Data</span>
+                <span class="badge">Multi-Language</span>
+            </div>
+            <div class="cta-buttons">
+                <a href="https://github.com/sonill/nepali-dates" class="btn btn-primary">View on GitHub</a>
+                <a href="https://www.npmjs.com/package/nepali-dates" class="btn btn-secondary">NPM Package</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Features -->
+    <section class="features">
+        <div class="container">
+            <h2 class="section-title">Why Nepali Dates?</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">✓</div>
+                    <h3>Accurate Data</h3>
+                    <p>101 years (BS 2000-2100) of verified calendar data from official sources</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Zero Dependencies</h3>
+                    <p>Lightweight and reliable with no external dependencies</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔒</div>
+                    <h3>Type-Safe</h3>
+                    <p>Full TypeScript support with comprehensive type definitions</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🌍</div>
+                    <h3>Multi-Language</h3>
+                    <p>JSON data accessible from Python, PHP, Ruby, Go, and more</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🧪</div>
+                    <h3>Well-Tested</h3>
+                    <p>>95% test coverage with 1400+ passing tests</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">👥</div>
+                    <h3>Community-Driven</h3>
+                    <p>Open data sources and transparent validation process</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Code Example -->
+    <section class="code-section">
+        <div class="container">
+            <h2 class="section-title">Quick Start</h2>
+            <p class="section-subtitle">Get started with just a few lines of code</p>
+
+            <div class="code-example">
+                <pre><code><span class="comment">// Install</span>
+<span class="keyword">npm install</span> nepali-dates
+
+<span class="comment">// Import</span>
+<span class="keyword">import</span> { <span class="function">bsToAd</span>, <span class="function">adToBs</span>, <span class="function">getTotalDaysInMonth</span> } <span class="keyword">from</span> <span class="string">'nepali-dates'</span>;
+
+<span class="comment">// Convert Nepali date to English date</span>
+<span class="keyword">const</span> englishDate = <span class="function">bsToAd</span>(<span class="number">2080</span>, <span class="number">10</span>, <span class="number">15</span>);
+<span class="keyword">console</span>.<span class="function">log</span>(englishDate); <span class="comment">// { year: 2024, month: 1, day: 27 }</span>
+
+<span class="comment">// Convert English date to Nepali date</span>
+<span class="keyword">const</span> nepaliDate = <span class="function">adToBs</span>(<span class="number">2024</span>, <span class="number">1</span>, <span class="number">27</span>);
+<span class="keyword">console</span>.<span class="function">log</span>(nepaliDate); <span class="comment">// { year: 2080, month: 10, day: 15 }</span>
+
+<span class="comment">// Get days in a Nepali month</span>
+<span class="keyword">const</span> days = <span class="function">getTotalDaysInMonth</span>(<span class="number">2080</span>, <span class="number">1</span>);
+<span class="keyword">console</span>.<span class="function">log</span>(days); <span class="comment">// 31</span></code></pre>
+            </div>
+        </div>
+    </section>
+
+    <!-- Multi-Language Support -->
+    <section class="languages">
+        <div class="container">
+            <h2 class="section-title">Use in Any Language</h2>
+            <p class="section-subtitle">Access calendar data from your favorite programming language</p>
+
+            <div class="languages-grid">
+                <div class="language-card">
+                    <h4>🐍 Python</h4>
+                    <p>Load JSON data with Python's built-in json module</p>
+                </div>
+                <div class="language-card">
+                    <h4>🐘 PHP</h4>
+                    <p>Parse with json_decode for easy integration</p>
+                </div>
+                <div class="language-card">
+                    <h4>💎 Ruby</h4>
+                    <p>Use JSON.parse to access calendar data</p>
+                </div>
+                <div class="language-card">
+                    <h4>🔷 Go</h4>
+                    <p>Decode with encoding/json package</p>
+                </div>
+                <div class="language-card">
+                    <h4>☕ Java</h4>
+                    <p>Import with Jackson or Gson libraries</p>
+                </div>
+                <div class="language-card">
+                    <h4>⚡ Rust</h4>
+                    <p>Deserialize with serde_json crate</p>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 2rem;">
+                <a href="https://github.com/yourusername/nepali-dates/tree/main/data" class="btn btn-primary">View JSON
+                    Data</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats -->
+    <section class="stats">
+        <div class="container">
+            <h2 class="section-title" style="color: white;">By the Numbers</h2>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">101</div>
+                    <div class="stat-label">Years of Data</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">1400+</div>
+                    <div class="stat-label">Tests Passing</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">0</div>
+                    <div class="stat-label">Dependencies</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">&lt;10KB</div>
+                    <div class="stat-label">Bundle Size</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-links">
+                <a href="https://github.com/yourusername/nepali-dates">GitHub</a>
+                <a href="https://github.com/yourusername/nepali-dates/blob/main/README.md">Documentation</a>
+                <a href="https://www.npmjs.com/package/nepali-dates">NPM</a>
+                <a href="https://github.com/yourusername/nepali-dates/issues">Issues</a>
+                <a href="https://github.com/yourusername/nepali-dates/blob/main/docs/CONTRIBUTING.md">Contributing</a>
+            </div>
+            <p>Made with ❤️ by the Nepali developer community</p>
+            <p style="margin-top: 0.5rem; font-size: 0.9rem;">Licensed under MIT • Developed by <a
+                    href="htps://sanil.com.np" target="_blank">Sanil Shakya</a></p>
+        </div>
+    </footer>
+</body>
+
+</html>
