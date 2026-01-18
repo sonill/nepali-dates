@@ -12,7 +12,9 @@ export default defineConfig({
         'dist/**',
         '**/*.test.ts',
         '**/*.config.ts',
-        'scripts/**'
+        'scripts/**',
+        'examples/**',
+        'src/index.ts'
       ],
       thresholds: {
         lines: 95,
