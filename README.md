@@ -245,6 +245,89 @@ interface ConversionOptions {
 - **AD Years**: 1943 - 2043
 - **Total Years**: 101 years of data
 
+## Using Calendar Data in Other Languages
+
+The calendar data is available as JSON files in the [data/](data/) directory, making it accessible from any programming language. This is particularly useful if you want to use the Nepali calendar data without the JavaScript conversion utilities.
+
+### Direct JSON Access
+
+You can access the raw calendar data from:
+
+- **Calendar Data**: [data/calendar-data.json](data/calendar-data.json)
+- **Reference Dates**: [data/reference-dates.json](data/reference-dates.json)
+
+### Examples in Other Languages
+
+**Python:**
+
+```python
+import json
+import urllib.request
+
+# Load calendar data from GitHub or your local installation
+with open('data/calendar-data.json') as f:
+    calendar_data = json.load(f)
+
+# Get days in each month for BS 2080
+year_2080 = calendar_data['2080']
+print(year_2080)  # [31, 32, 31, 32, 31, 30, 30, 30, 29, 29, 30, 30]
+```
+
+**PHP:**
+
+```php
+<?php
+$calendarData = json_decode(file_get_contents('data/calendar-data.json'), true);
+$year2080 = $calendarData['2080'];
+print_r($year2080);
+?>
+```
+
+**Ruby:**
+
+```ruby
+require 'json'
+
+calendar_data = JSON.parse(File.read('data/calendar-data.json'))
+year_2080 = calendar_data['2080']
+puts year_2080
+```
+
+**Go:**
+
+```go
+package main
+
+import (
+    "encoding/json"
+    "os"
+)
+
+type CalendarData map[string][]int
+
+func main() {
+    file, _ := os.Open("data/calendar-data.json")
+    defer file.Close()
+
+    var data CalendarData
+    json.NewDecoder(file).Decode(&data)
+
+    year2080 := data["2080"]
+    println(year2080)
+}
+```
+
+### Data Format
+
+The JSON files are structured for easy parsing:
+
+- Each year is a string key (e.g., "2080")
+- Each value is an array of 12 integers representing days in each month
+- Months follow the order: [Baisakh, Jestha, Ashar, Shrawan, Bhadra, Ashwin, Kartik, Mangsir, Poush, Magh, Falgun, Chaitra]
+- Base reference: BS 2000-01-01 = AD 1943-04-14
+
+See [data/README.md](data/README.md) for detailed documentation on the data structure and how to contribute updates.
+
 ## Data Sources
 
 The calendar data has been compiled and verified from:
