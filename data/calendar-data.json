@@ -1,7 +1,7 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "description": "Nepali Calendar Data (Bikram Sambat). Each year maps to an array of 12 numbers representing the days in each month. Months: [Baisakh, Jestha, Ashar, Shrawan, Bhadra, Ashwin, Kartik, Mangsir, Poush, Magh, Falgun, Chaitra]. Data Sources: Nepal Panchanga Nirnayak Samiti, verified against historical records. Data Range: BS 2000 - 2100 (AD 1943 - 2043)",
-  "2000": [30, 32, 31, 32, 31, 30, 30, 30, 29, 30, 29, 31],
+  "2000": [30, 32, 31, 32, 31, 30, 30, 30, 29, 30, 29, 30],
   "2001": [31, 31, 32, 31, 31, 31, 30, 29, 30, 29, 30, 30],
   "2002": [31, 31, 32, 32, 31, 30, 30, 29, 30, 29, 30, 30],
   "2003": [31, 32, 31, 32, 31, 30, 30, 30, 29, 29, 30, 31],
