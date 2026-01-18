@@ -1,6 +1,6 @@
 # Nepali Dates
 
-[![npm version](https://img.shields.io/npm/v/nepali-dates.svg)](https://www.npmjs.com/package/nepali-dates)
+[![npm version](https://img.shields.io/npm/v/nepali-dates.svg)](https://www.npmjs.com/package/@sonill/nepali-dates)
 [![Tests](https://github.com/sonill/nepali-dates/actions/workflows/test.yml/badge.svg)](https://github.com/sonill/nepali-dates/actions/workflows/test.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.3-blue.svg)](https://www.typescriptlang.org/)
@@ -8,6 +8,10 @@
 Community-driven, accurate Nepali calendar (Bikram Sambat) data and conversion utilities. A trustable source for Nepali date calculations with zero dependencies.
 
 Use this package instead of maintaining your own source of datas.
+
+## Website
+
+View website  [here](https://sonill.github.io/nepali-dates/)
 
 ## Features
 
