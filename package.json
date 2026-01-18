@@ -49,12 +49,12 @@
   },
   "homepage": "https://sonill.github.io/nepali-dates",
   "devDependencies": {
-    "@types/node": "^20.11.0",
-    "@vitest/coverage-v8": "^1.2.0",
-    "tsup": "^8.0.1",
-    "tsx": "^4.7.0",
-    "typescript": "^5.3.3",
-    "vitest": "^1.2.0"
+    "@types/node": "^25.0.9",
+    "@vitest/coverage-v8": "^4.0.17",
+    "tsup": "^8.5.1",
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.3",
+    "vitest": "^4.0.17"
   },
   "engines": {
     "node": ">=18"
