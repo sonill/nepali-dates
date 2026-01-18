@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import { NEPALI_CALENDAR_DATA, MIN_YEAR, MAX_YEAR } from '../../src/data/calendar-data';
-import { REFERENCE_DATES } from '../../src/data/reference-dates';
+import { REFERENCE_DATES, BASE_BS_DATE, BASE_AD_DATE } from '../../src/data/reference-dates';
 
 describe('Data Integrity Tests', () => {
   describe('Calendar Data Structure', () => {
@@ -76,9 +76,9 @@ describe('Data Integrity Tests', () => {
       });
     });
 
-    it('should have base reference date as first entry', () => {
-      expect(REFERENCE_DATES[0].bs).toEqual({ year: 2000, month: 1, day: 1 });
-      expect(REFERENCE_DATES[0].ad).toEqual({ year: 1943, month: 4, day: 14 });
+    it('should have correct base reference constants', () => {
+      expect(BASE_BS_DATE).toEqual({ year: 2000, month: 1, day: 1 });
+      expect(BASE_AD_DATE).toEqual({ year: 1943, month: 4, day: 14 });
     });
   });
 
