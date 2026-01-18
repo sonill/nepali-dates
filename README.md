@@ -1,6 +1,7 @@
 # Nepali Dates
 
 [![npm version](https://img.shields.io/npm/v/nepali-dates.svg)](https://www.npmjs.com/package/nepali-dates)
+[![Tests](https://github.com/sonill/nepali-dates/actions/workflows/test.yml/badge.svg)](https://github.com/sonill/nepali-dates/actions/workflows/test.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.3-blue.svg)](https://www.typescriptlang.org/)
 
