@@ -22,6 +22,38 @@ export const REFERENCE_DATES: ReferenceDatePair[] = [
     ad: { year: 1944, month: 4, day: 13 }
   },
   {
+    bs: { year: 2010, month: 1, day: 1 },
+    ad: { year: 1953, month: 4, day: 13 }
+  },
+  {
+    bs: { year: 2015, month: 1, day: 1 },
+    ad: { year: 1958, month: 4, day: 13 }
+  },
+  {
+    bs: { year: 2025, month: 1, day: 1 },
+    ad: { year: 1968, month: 4, day: 13 }
+  },
+  {
+    bs: { year: 2035, month: 1, day: 1 },
+    ad: { year: 1978, month: 4, day: 14 }
+  },
+  {
+    bs: { year: 2045, month: 1, day: 1 },
+    ad: { year: 1988, month: 4, day: 13 }
+  },
+  {
+    bs: { year: 2055, month: 1, day: 1 },
+    ad: { year: 1998, month: 4, day: 14 }
+  },
+  {
+    bs: { year: 2065, month: 1, day: 1 },
+    ad: { year: 2008, month: 4, day: 13 }
+  },
+  {
+    bs: { year: 2075, month: 1, day: 1 },
+    ad: { year: 2018, month: 4, day: 14 }
+  },
+  {
     bs: { year: 2082, month: 1, day: 1 },
     ad: { year: 2025, month: 4, day: 14 }
   }
