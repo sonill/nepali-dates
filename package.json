@@ -1,0 +1,61 @@
+{
+  "name": "nepali-dates",
+  "version": "0.1.0",
+  "description": "Community-driven, accurate Nepali calendar data and conversion utilities",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "require": "./dist/index.js",
+      "import": "./dist/index.mjs",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "tsup src/index.ts --format cjs,esm --dts",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "lint": "tsc --noEmit",
+    "validate-data": "tsx scripts/validate-data.ts",
+    "prepublishOnly": "npm run lint && npm run test && npm run build"
+  },
+  "keywords": [
+    "nepali",
+    "calendar",
+    "bikram-sambat",
+    "bs",
+    "ad",
+    "date",
+    "conversion",
+    "nepal",
+    "nepali-calendar"
+  ],
+  "author": "Community Contributors",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/nepali-dates.git"
+  },
+  "bugs": {
+    "url": "https://github.com/yourusername/nepali-dates/issues"
+  },
+  "homepage": "https://github.com/yourusername/nepali-dates#readme",
+  "devDependencies": {
+    "@types/node": "^20.11.0",
+    "@vitest/coverage-v8": "^1.2.0",
+    "tsup": "^8.0.1",
+    "tsx": "^4.7.0",
+    "typescript": "^5.3.3",
+    "vitest": "^1.2.0"
+  },
+  "engines": {
+    "node": ">=16"
+  }
+}
