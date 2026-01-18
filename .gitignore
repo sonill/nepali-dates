@@ -8,3 +8,4 @@ coverage/
 .idea/
 *.tsbuildinfo
 .claude
+.mcp.json

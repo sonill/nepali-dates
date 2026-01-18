@@ -35,6 +35,7 @@ View website  [here](https://sonill.github.io/nepali-dates/)
 - **Multiple Formats**: Support for object, ISO, string, and array formats
 - **Well-Tested**: >95% test coverage with extensive validation
 - **Community-Driven**: Open data sources and transparent validation
+- **AI Agent Ready**: MCP server available for Claude Code and other AI tools
 
 ## Installation
 
@@ -49,6 +50,75 @@ yarn add @sonill/nepali-dates
 ```bash
 pnpm add @sonill/nepali-dates
 ```
+
+## MCP Server for AI Agents
+
+This package includes a built-in MCP (Model Context Protocol) server with 9 tools for AI agents to work with Nepali calendar dates.
+
+### Setup for Claude Code
+
+Add to `~/.claude/config.json`:
+
+**Using npx (recommended - no installation required):**
+
+```json
+{
+  "mcpServers": {
+    "nepali-dates": {
+      "command": "npx",
+      "args": ["-y", "@sonill/nepali-dates", "nepali-dates-mcp"]
+    }
+  }
+}
+```
+
+**Using global installation:**
+
+```bash
+npm install -g @sonill/nepali-dates
+```
+
+```json
+{
+  "mcpServers": {
+    "nepali-dates": {
+      "command": "nepali-dates-mcp"
+    }
+  }
+}
+```
+
+### Setup for Claude Desktop
+
+Add the same configuration to your Claude Desktop config file:
+
+- **macOS:** `~/Library/Application Support/Claude/claude_desktop_config.json`
+- **Windows:** `%APPDATA%\Claude\claude_desktop_config.json`
+- **Linux:** `~/.config/Claude/claude_desktop_config.json`
+
+After configuration, restart your AI agent and ask questions like:
+
+- "What is today's date in Nepali calendar?"
+- "Convert BS 2081/01/15 to English date"
+- "Show me the calendar for Baisakh 2081"
+
+### Available Tools
+
+- `convert_bs_to_ad`, `convert_ad_to_bs` - Date conversion
+- `get_month_calendar`, `get_year_calendar` - Calendar generation
+- `validate_bs_date`, `validate_ad_date` - Date validation
+- `navigate_month`, `get_nepali_month_name` - Navigation & localization
+- `get_current_nepali_date` - Get today's BS date
+
+### Testing
+
+Test the MCP server with the visual inspector:
+
+```bash
+npx @modelcontextprotocol/inspector npx @sonill/nepali-dates nepali-dates-mcp
+```
+
+For detailed MCP documentation, see [docs/MCP.md](docs/MCP.md).
 
 ## Quick Start
 
