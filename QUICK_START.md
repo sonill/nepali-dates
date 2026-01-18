@@ -136,6 +136,6 @@ const options: ConversionOptions = { format: 'iso' };
 
 ## Need Help?
 
-- [GitHub Issues](https://github.com/yourusername/nepali-dates/issues)
+- [GitHub Issues](https://github.com/sonill/nepali-dates/issues)
 - [README](README.md)
 - [API Reference](docs/API.md)

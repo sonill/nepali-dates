@@ -383,9 +383,9 @@ Thanks to all contributors and the Nepali developer community for maintaining ac
 
 ## Links
 
-- [GitHub Repository](https://github.com/yourusername/nepali-dates)
-- [Issue Tracker](https://github.com/yourusername/nepali-dates/issues)
-- [NPM Package](https://www.npmjs.com/package/nepali-dates)
+- [GitHub Repository](https://github.com/sonill/nepali-dates)
+- [Issue Tracker](https://github.com/sonill/nepali-dates/issues)
+- [NPM Package](https://www.npmjs.com/package/@sonill/nepali-dates)
 
 ---
 
