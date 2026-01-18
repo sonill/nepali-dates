@@ -5,11 +5,14 @@
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
+  "bin": {
+    "nepali-dates-mcp": "./dist/bin/mcp-server.js"
+  },
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "require": "./dist/index.js",
-      "import": "./dist/index.mjs",
-      "types": "./dist/index.d.ts"
+      "import": "./dist/index.mjs"
     }
   },
   "files": [
@@ -19,7 +22,9 @@
     "LICENSE"
   ],
   "scripts": {
-    "build": "tsup src/index.ts --format cjs,esm --dts",
+    "build": "npm run build:lib && npm run build:mcp",
+    "build:lib": "tsup src/index.ts --format cjs,esm --dts",
+    "build:mcp": "tsup src/bin/mcp-server.ts --format cjs --no-splitting --outDir dist/bin && chmod +x dist/bin/mcp-server.js",
     "test": "vitest run",
     "test:watch": "vitest",
     "test:coverage": "vitest run --coverage",
@@ -36,7 +41,12 @@
     "date",
     "conversion",
     "nepal",
-    "nepali-calendar"
+    "nepali-calendar",
+    "mcp",
+    "model-context-protocol",
+    "ai",
+    "claude",
+    "agent"
   ],
   "author": "Community Contributors",
   "license": "MIT",
@@ -48,6 +58,9 @@
     "url": "https://github.com/sonill/nepali-dates/issues"
   },
   "homepage": "https://sonill.github.io/nepali-dates",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.4"
+  },
   "devDependencies": {
     "@types/node": "^20.11.0",
     "@vitest/coverage-v8": "^1.2.0",
