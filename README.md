@@ -1,6 +1,6 @@
 # Nepali Dates
 
-[![npm version](https://img.shields.io/npm/v/nepali-dates.svg)](https://www.npmjs.com/package/@sonill/nepali-dates)
+[![npm version](https://img.shields.io/npm/v/@sonill/nepali-dates.svg)](https://www.npmjs.com/package/@sonill/nepali-dates)
 [![Tests](https://github.com/sonill/nepali-dates/actions/workflows/test.yml/badge.svg)](https://github.com/sonill/nepali-dates/actions/workflows/test.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.3-blue.svg)](https://www.typescriptlang.org/)
@@ -39,21 +39,21 @@ View website  [here](https://sonill.github.io/nepali-dates/)
 ## Installation
 
 ```bash
-npm install nepali-dates
+npm install @sonill/nepali-dates
 ```
 
 ```bash
-yarn add nepali-dates
+yarn add @sonill/nepali-dates
 ```
 
 ```bash
-pnpm add nepali-dates
+pnpm add @sonill/nepali-dates
 ```
 
 ## Quick Start
 
 ```typescript
-import { bsToAd, adToBs, getTotalDaysInMonth } from 'nepali-dates';
+import { bsToAd, adToBs, getTotalDaysInMonth } from '@sonill/nepali-dates';
 
 // Convert Nepali date to English date
 const englishDate = bsToAd(2080, 10, 15);

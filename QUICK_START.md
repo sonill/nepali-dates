@@ -5,7 +5,7 @@ Get up and running with Nepali Dates in minutes!
 ## Installation
 
 ```bash
-npm install nepali-dates
+npm install @sonill/nepali-dates
 ```
 
 ## Basic Usage
@@ -13,7 +13,7 @@ npm install nepali-dates
 ### 1. Convert Nepali to English Date
 
 ```typescript
-import { bsToAd } from 'nepali-dates';
+import { bsToAd } from '@sonill/nepali-dates';
 
 const englishDate = bsToAd(2080, 10, 15);
 console.log(englishDate);
@@ -23,7 +23,7 @@ console.log(englishDate);
 ### 2. Convert English to Nepali Date
 
 ```typescript
-import { adToBs } from 'nepali-dates';
+import { adToBs } from '@sonill/nepali-dates';
 
 const nepaliDate = adToBs(2024, 1, 27);
 console.log(nepaliDate);
@@ -33,7 +33,7 @@ console.log(nepaliDate);
 ### 3. Get Month Information
 
 ```typescript
-import { getTotalDaysInMonth, getNepaliMonthName } from 'nepali-dates';
+import { getTotalDaysInMonth, getNepaliMonthName } from '@sonill/nepali-dates';
 
 const days = getTotalDaysInMonth(2080, 1);
 console.log(days); // 31
@@ -45,7 +45,7 @@ console.log(monthName); // "Baisakh"
 ### 4. Format Dates
 
 ```typescript
-import { bsToAd } from 'nepali-dates';
+import { bsToAd } from '@sonill/nepali-dates';
 
 // Get ISO format
 const iso = bsToAd(2080, 10, 15, { format: 'iso' });
@@ -62,7 +62,7 @@ console.log(custom); // "27/01/2024"
 ### 5. Validate Dates
 
 ```typescript
-import { isValidBsDate, isValidAdDate } from 'nepali-dates';
+import { isValidBsDate, isValidAdDate } from '@sonill/nepali-dates';
 
 console.log(isValidBsDate(2080, 1, 1)); // true
 console.log(isValidBsDate(2080, 13, 1)); // false
@@ -76,7 +76,7 @@ console.log(isValidAdDate(2023, 2, 29)); // false
 ### Birthday Calculator
 
 ```typescript
-import { bsToAd, getDaysInRange } from 'nepali-dates';
+import { bsToAd, getDaysInRange } from '@sonill/nepali-dates';
 
 const birthDate = { year: 2060, month: 1, day: 1 };
 const today = { year: 2080, month: 1, day: 1 };
@@ -93,7 +93,7 @@ console.log(`Age: ${ageInYears} years`);
 ### Month Navigator
 
 ```typescript
-import { getNextMonth, getPrevMonth } from 'nepali-dates';
+import { getNextMonth, getPrevMonth } from '@sonill/nepali-dates';
 
 const current = { year: 2080, month: 12 };
 
@@ -107,7 +107,7 @@ console.log(prev); // { year: 2080, month: 11 }
 ### Date Parser
 
 ```typescript
-import { parseDate } from 'nepali-dates';
+import { parseDate } from '@sonill/nepali-dates';
 
 const date1 = parseDate('2080-10-15');
 console.log(date1); // { year: 2080, month: 10, day: 15 }
@@ -121,7 +121,7 @@ console.log(date2); // { year: 2080, month: 10, day: 15 }
 Full TypeScript support with type definitions:
 
 ```typescript
-import type { DateObject, ConversionOptions } from 'nepali-dates';
+import type { DateObject, ConversionOptions } from '@sonill/nepali-dates';
 
 const date: DateObject = { year: 2080, month: 10, day: 15 };
 const options: ConversionOptions = { format: 'iso' };
