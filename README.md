@@ -6,6 +6,8 @@
 
 Community-driven, accurate Nepali calendar (Bikram Sambat) data and conversion utilities. A trustable source for Nepali date calculations with zero dependencies.
 
+Use this package instead of maintaining your own source of datas.
+
 ## Features
 
 - **Accurate Data**: 101 years (BS 2000-2100) of verified Nepali calendar data

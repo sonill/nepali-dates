@@ -78,13 +78,11 @@ function calculateDaysBetweenAdDates(
   let m = fromMonth;
   let d = fromDay;
 
-  while (y < toYear || m < toMonth || d < toDay) {
+  // Advance one day at a time until we reach the target date
+  while (y !== toYear || m !== toMonth || d !== toDay) {
+    d++;
     const daysInMonth = getDaysInAdMonth(y, m);
-
-    if (d < daysInMonth) {
-      d++;
-      days++;
-    } else {
+    if (d > daysInMonth) {
       d = 1;
       m++;
       if (m > 12) {
@@ -92,12 +90,7 @@ function calculateDaysBetweenAdDates(
         y++;
       }
     }
-
-    // Prevent infinite loops
-    if (y > toYear || (y === toYear && m > toMonth) ||
-        (y === toYear && m === toMonth && d > toDay)) {
-      break;
-    }
+    days++;
   }
 
   return days;

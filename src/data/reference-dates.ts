@@ -17,6 +17,9 @@ export const REFERENCE_DATES: ReferenceDatePair[] = [
     bs: { year: 2000, month: 1, day: 1 },
     ad: { year: 1943, month: 4, day: 14 }
   },
+
+  // followind reference dates will help in unit test
+  // and also improve the accuracy + speed of conversion algorithms
   {
     bs: { year: 2001, month: 1, day: 1 },
     ad: { year: 1944, month: 4, day: 13 }
@@ -56,6 +59,10 @@ export const REFERENCE_DATES: ReferenceDatePair[] = [
   {
     bs: { year: 2082, month: 1, day: 1 },
     ad: { year: 2025, month: 4, day: 14 }
+  },
+  {
+    bs: { year: 2083, month: 1, day: 1 },
+    ad: { year: 2026, month: 4, day: 14 }
   }
   // Additional reference dates should be added after verifying against
   // official sources or reliable existing implementations
