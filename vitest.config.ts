@@ -10,6 +10,9 @@ export default defineConfig({
       exclude: [
         'node_modules/**',
         'dist/**',
+        'src/bin/**',
+        'bin/**',
+        '**/mcp-server.ts',
         '**/*.test.ts',
         '**/*.config.ts',
         'scripts/**',
