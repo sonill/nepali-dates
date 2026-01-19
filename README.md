@@ -43,23 +43,28 @@ View website  [here](https://sonill.github.io/nepali-dates/)
 npm install @sonill/nepali-dates
 ```
 
-```bash
-yarn add @sonill/nepali-dates
+## Quick Start
+
+```typescript
+import { bsToAd, adToBs, getTotalDaysInMonth } from '@sonill/nepali-dates';
+
+// Nepali to English
+bsToAd(2080, 10, 15);  // { year: 2024, month: 1, day: 27 }
+
+// English to Nepali
+adToBs(2024, 1, 27);   // { year: 2080, month: 10, day: 15 }
+
+// Days in month
+getTotalDaysInMonth(2080, 1);  // 31
 ```
 
-```bash
-pnpm add @sonill/nepali-dates
-```
+For complete API documentation, see [docs/API.md](docs/API.md).
 
 ## MCP Server for AI Agents
 
-This package includes a built-in MCP (Model Context Protocol) server with 9 tools for AI agents to work with Nepali calendar dates.
-
-### Setup for Claude Code
+This package includes a built-in MCP server for Claude Code, Claude Desktop, and other AI tools.
 
 Add to `~/.claude/config.json`:
-
-**Using npx (recommended - no installation required):**
 
 ```json
 {
@@ -72,393 +77,69 @@ Add to `~/.claude/config.json`:
 }
 ```
 
-**Using global installation:**
+For detailed setup and available tools, see [docs/MCP.md](docs/MCP.md).
 
-```bash
-npm install -g @sonill/nepali-dates
-```
+## Using Data in Other Languages
 
-```json
-{
-  "mcpServers": {
-    "nepali-dates": {
-      "command": "nepali-dates-mcp"
-    }
-  }
-}
-```
-
-### Setup for Claude Desktop
-
-Add the same configuration to your Claude Desktop config file:
-
-- **macOS:** `~/Library/Application Support/Claude/claude_desktop_config.json`
-- **Windows:** `%APPDATA%\Claude\claude_desktop_config.json`
-- **Linux:** `~/.config/Claude/claude_desktop_config.json`
-
-After configuration, restart your AI agent and ask questions like:
-
-- "What is today's date in Nepali calendar?"
-- "Convert BS 2081/01/15 to English date"
-- "Show me the calendar for Baisakh 2081"
-
-### Available Tools
-
-- `convert_bs_to_ad`, `convert_ad_to_bs` - Date conversion
-- `get_month_calendar`, `get_year_calendar` - Calendar generation
-- `validate_bs_date`, `validate_ad_date` - Date validation
-- `navigate_month`, `get_nepali_month_name` - Navigation & localization
-- `get_current_nepali_date` - Get today's BS date
-
-### Testing
-
-Test the MCP server with the visual inspector:
-
-```bash
-npx @modelcontextprotocol/inspector npx @sonill/nepali-dates nepali-dates-mcp
-```
-
-For detailed MCP documentation, see [docs/MCP.md](docs/MCP.md).
-
-## Quick Start
-
-```typescript
-import { bsToAd, adToBs, getTotalDaysInMonth } from '@sonill/nepali-dates';
-
-// Convert Nepali date to English date
-const englishDate = bsToAd(2080, 10, 15);
-console.log(englishDate); // { year: 2024, month: 1, day: 27 }
-
-// Convert English date to Nepali date
-const nepaliDate = adToBs(2024, 1, 27);
-console.log(nepaliDate); // { year: 2080, month: 10, day: 15 }
-
-// Get days in a Nepali month
-const days = getTotalDaysInMonth(2080, 1);
-console.log(days); // 31
-```
-
-## API Reference
-
-### Date Conversion
-
-#### `bsToAd(year, month, day, options?)`
-
-Convert Bikram Sambat (BS) date to Anno Domini (AD) date.
-
-```typescript
-// Default: returns object
-bsToAd(2080, 10, 15);
-// { year: 2024, month: 1, day: 27 }
-
-// ISO format
-bsToAd(2080, 10, 15, { format: 'iso' });
-// "2024-01-27"
-
-// Custom string format
-bsToAd(2080, 10, 15, { format: 'string', pattern: 'DD/MM/YYYY' });
-// "27/01/2024"
-
-// Array format
-bsToAd(2080, 10, 15, { format: 'array' });
-// [2024, 1, 27]
-```
-
-#### `adToBs(year, month, day, options?)`
-
-Convert Anno Domini (AD) date to Bikram Sambat (BS) date.
-
-```typescript
-// Default: returns object
-adToBs(2024, 1, 27);
-// { year: 2080, month: 10, day: 15 }
-
-// ISO format
-adToBs(2024, 1, 27, { format: 'iso' });
-// "2080-10-15"
-
-// Array format
-adToBs(2024, 1, 27, { format: 'array' });
-// [2080, 10, 15]
-```
-
-### Utility Functions
-
-#### `getTotalDaysInMonth(year, month)`
-
-Get the total number of days in a Nepali month.
-
-```typescript
-getTotalDaysInMonth(2080, 1); // 31
-getTotalDaysInMonth(2080, 2); // 32
-```
-
-#### `getTotalDaysInYear(year)`
-
-Get the total number of days in a Nepali year.
-
-```typescript
-getTotalDaysInYear(2080); // 366
-getTotalDaysInYear(2081); // 365
-```
-
-#### `getNextMonth(year, month)`
-
-Get the next month.
-
-```typescript
-getNextMonth(2080, 6); // { year: 2080, month: 7 }
-getNextMonth(2080, 12); // { year: 2081, month: 1 }
-```
-
-#### `getPrevMonth(year, month)`
-
-Get the previous month.
-
-```typescript
-getPrevMonth(2080, 7); // { year: 2080, month: 6 }
-getPrevMonth(2080, 1); // { year: 2079, month: 12 }
-```
-
-#### `getDaysInRange(fromYear, fromMonth, fromDay, toYear, toMonth, toDay)`
-
-Calculate the number of days between two BS dates.
-
-```typescript
-getDaysInRange(2080, 1, 1, 2080, 1, 31); // 30
-getDaysInRange(2080, 1, 1, 2081, 1, 1); // 366
-```
-
-### Formatting Functions
-
-#### `formatBsDate(year, month, day, options?)`
-
-Format a BS date to string.
-
-```typescript
-formatBsDate(2080, 10, 15); // "2080-10-15"
-formatBsDate(2080, 10, 15, { pattern: 'DD/MM/YYYY' }); // "15/10/2080"
-```
-
-#### `getNepaliMonthName(month, locale?)`
-
-Get Nepali month name.
-
-```typescript
-getNepaliMonthName(1); // "Baisakh"
-getNepaliMonthName(1, 'ne'); // "बैशाख"
-getNepaliMonthName(2); // "Jestha"
-```
-
-#### `parseDate(dateString, pattern?)`
-
-Parse a date string to DateObject.
-
-```typescript
-parseDate('2080-10-15'); // { year: 2080, month: 10, day: 15 }
-parseDate('15/10/2080', 'DD/MM/YYYY'); // { year: 2080, month: 10, day: 15 }
-```
-
-### Validation Functions
-
-#### `isValidBsDate(year, month, day)`
-
-Validate a BS date.
-
-```typescript
-isValidBsDate(2080, 1, 1); // true
-isValidBsDate(2080, 13, 1); // false
-isValidBsDate(2080, 1, 32); // false
-```
-
-#### `isValidAdDate(year, month, day)`
-
-Validate an AD date.
-
-```typescript
-isValidAdDate(2024, 1, 27); // true
-isValidAdDate(2024, 2, 30); // false
-```
-
-#### `hasDataForYear(year)`
-
-Check if calendar data exists for a year.
-
-```typescript
-hasDataForYear(2080); // true
-hasDataForYear(1999); // false
-```
-
-### Data Access
-
-#### `getCalendarData(year)`
-
-Get calendar data for a specific year.
-
-```typescript
-getCalendarData(2080);
-// [31, 32, 31, 32, 31, 30, 30, 30, 29, 29, 30, 30]
-```
-
-#### `getDataRange()`
-
-Get the available data range.
-
-```typescript
-getDataRange();
-// { minYear: 2000, maxYear: 2100, totalYears: 101 }
-```
-
-## Types
-
-```typescript
-type DateFormat = 'object' | 'iso' | 'string' | 'array';
-type DatePattern = 'YYYY-MM-DD' | 'YYYY/MM/DD' | 'DD-MM-YYYY' | 'DD/MM/YYYY' | 'MM-DD-YYYY' | 'MM/DD/YYYY';
-type Locale = 'en' | 'ne';
-
-interface DateObject {
-  year: number;
-  month: number;
-  day: number;
-}
-
-interface ConversionOptions {
-  format?: DateFormat;
-  pattern?: DatePattern;
-}
-```
-
-## Data Range
-
-- **BS Years**: 2000 - 2100
-- **AD Years**: 1943 - 2043
-- **Total Years**: 101 years of data
-
-## Using Calendar Data in Other Languages
-
-The calendar data is available as JSON files in the [data/](data/) directory, making it accessible from any programming language. This is particularly useful if you want to use the Nepali calendar data without the JavaScript conversion utilities.
-
-### Direct JSON Access
-
-You can access the raw calendar data from:
-
-- **Calendar Data**: [data/calendar-data.json](data/calendar-data.json)
-- **Reference Dates**: [data/reference-dates.json](data/reference-dates.json)
-
-### Examples in Other Languages
+The calendar data is available as JSON in the [data/](data/) directory for use with any programming language.
 
 **Python:**
 
 ```python
 import json
-import urllib.request
 
-# Load calendar data from GitHub or your local installation
 with open('data/calendar-data.json') as f:
     calendar_data = json.load(f)
 
-# Get days in each month for BS 2080
-year_2080 = calendar_data['2080']
-print(year_2080)  # [31, 32, 31, 32, 31, 30, 30, 30, 29, 29, 30, 30]
+year_2080 = calendar_data['2080']  # [31, 32, 31, 32, 31, 30, 30, 30, 29, 29, 30, 30]
 ```
 
 **PHP:**
 
 ```php
-<?php
 $calendarData = json_decode(file_get_contents('data/calendar-data.json'), true);
 $year2080 = $calendarData['2080'];
-print_r($year2080);
-?>
 ```
 
 **Ruby:**
 
 ```ruby
 require 'json'
-
 calendar_data = JSON.parse(File.read('data/calendar-data.json'))
 year_2080 = calendar_data['2080']
-puts year_2080
 ```
 
 **Go:**
 
 ```go
-package main
-
-import (
-    "encoding/json"
-    "os"
-)
-
 type CalendarData map[string][]int
 
-func main() {
-    file, _ := os.Open("data/calendar-data.json")
-    defer file.Close()
-
-    var data CalendarData
-    json.NewDecoder(file).Decode(&data)
-
-    year2080 := data["2080"]
-    println(year2080)
-}
+file, _ := os.Open("data/calendar-data.json")
+var data CalendarData
+json.NewDecoder(file).Decode(&data)
+year2080 := data["2080"]
 ```
 
-### Data Format
+See [data/README.md](data/README.md) for data format details.
 
-The JSON files are structured for easy parsing:
+## Documentation
 
-- Each year is a string key (e.g., "2080")
-- Each value is an array of 12 integers representing days in each month
-- Months follow the order: [Baisakh, Jestha, Ashar, Shrawan, Bhadra, Ashwin, Kartik, Mangsir, Poush, Magh, Falgun, Chaitra]
-- Base reference: BS 2000-01-01 = AD 1943-04-14
-
-See [data/README.md](data/README.md) for detailed documentation on the data structure and how to contribute updates.
-
-## Data Sources
-
-The calendar data has been compiled and verified from:
-- Nepal Panchanga Nirnayak Samiti (official source)
-- Historical records and government publications
-- Cross-referenced with multiple existing implementations
-- Community contributions and verification
+- [API Reference](docs/API.md) - Complete function documentation
+- [MCP Server](docs/MCP.md) - AI agent integration
+- [Contributing](docs/CONTRIBUTING.md) - How to contribute
+- [Data Format](data/README.md) - Calendar data structure
 
 ## Contributing
 
-We welcome contributions! Please see [CONTRIBUTING.md](docs/CONTRIBUTING.md) for guidelines.
-
-### Adding New Year Data
-
-When adding new year data, please:
-1. Provide at least 2 verified sources
-2. Follow the contribution template
-3. Include test cases
-4. Update reference dates if applicable
-
-## Browser Support
-
-Works in all modern browsers and Node.js 16+.
-
-## Bundle Size
-
-< 10KB minified (zero dependencies)
-
-## License
-
-MIT License - see [LICENSE](LICENSE) file for details.
-
-## Acknowledgments
-
-Thanks to all contributors and the Nepali developer community for maintaining accurate calendar data.
+The most valuable contribution is **updating the calendar data** - no coding required. See [CONTRIBUTING.md](docs/CONTRIBUTING.md) for details.
 
 ## Links
 
-- [GitHub Repository](https://github.com/sonill/nepali-dates)
-- [Issue Tracker](https://github.com/sonill/nepali-dates/issues)
-- [NPM Package](https://www.npmjs.com/package/@sonill/nepali-dates)
+- [Website](https://sonill.github.io/nepali-dates/)
+- [GitHub](https://github.com/sonill/nepali-dates)
+- [npm](https://www.npmjs.com/package/@sonill/nepali-dates)
+- [Issues](https://github.com/sonill/nepali-dates/issues)
 
----
+## License
 
-Made with ❤️ by the Nepali developer community
+MIT License - see [LICENSE](LICENSE) file.
