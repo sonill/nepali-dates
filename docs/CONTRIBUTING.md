@@ -1,134 +1,64 @@
 # Contributing to Nepali Dates
 
-Thank you for your interest in contributing to Nepali Dates! This document provides guidelines and instructions for contributing.
+Thank you for your interest in contributing! The most valuable contribution is **updating the calendar data** - no coding required.
 
-## Table of Contents
+---
 
-- [Code of Conduct](#code-of-conduct)
-- [How to Contribute](#how-to-contribute)
-- [Contributing Calendar Data](#contributing-calendar-data)
-- [Contributing Code](#contributing-code)
-- [Reporting Issues](#reporting-issues)
-- [Development Setup](#development-setup)
+## For Non-Developers
 
-## Code of Conduct
+**Your main job: Update the source data files.**
 
-Be respectful, inclusive, and considerate. We're building this for the community.
+The calendar data is stored in simple JSON files that anyone can edit. You don't need to know JavaScript or programming.
 
-## How to Contribute
+### How to Update Calendar Data
 
-1. Fork the repository
-2. Create a new branch (`git checkout -b feature/your-feature`)
-3. Make your changes
-4. Run tests (`npm test`)
-5. Commit your changes (`git commit -m 'Add some feature'`)
-6. Push to the branch (`git push origin feature/your-feature`)
-7. Open a Pull Request
+1. **Fork this repository** on GitHub (click the "Fork" button)
 
-## Contributing Calendar Data
+2. **Edit the data file** directly on GitHub:
+   - Go to [`data/calendar-data.json`](../data/calendar-data.json)
+   - Click the pencil icon to edit
+   - Add or modify year data
 
-Calendar data is the most critical part of this package. When contributing new year data:
+3. **Data format** - Each year has 12 numbers (days in each month):
+   ```json
+   "2101": [31, 32, 31, 32, 31, 30, 30, 30, 29, 29, 30, 30]
+   ```
+   Months are: Baisakh, Jestha, Ashar, Shrawan, Bhadra, Ashwin, Kartik, Mangsir, Poush, Magh, Falgun, Chaitra
 
-### Requirements
+4. **Submit a Pull Request** with:
+   - Your source (where you got the data)
+   - At least 2 verified sources for new year data
 
-1. **Two Independent Sources**: Provide at least 2 verified sources for the data
-2. **Source Documentation**: Document your sources in `DATA_SOURCES.md`
-3. **Verification**: Cross-reference with existing reliable implementations
-4. **Test Cases**: Add reference dates for the new year
+### What Data Can You Contribute?
 
-### Data Format
+- **New year data** (e.g., BS 2101 and beyond)
+- **Corrections** to existing data (with proof from official sources)
+- **Reference dates** in [`data/reference-dates.json`](../data/reference-dates.json)
 
-Add data to `src/data/calendar-data.ts`:
+### Trusted Sources
 
-```typescript
-export const NEPALI_CALENDAR_DATA: CalendarData = {
-  // ... existing data
-  2101: [31, 32, 31, 32, 31, 30, 30, 30, 29, 29, 30, 30], // Your new data
-};
-```
-
-### Verification Checklist
-
-- [ ] Data is from 2+ verified sources
-- [ ] Each month has 29-32 days
-- [ ] Total year days is between 354-385
-- [ ] Added to `DATA_SOURCES.md` with source links
-- [ ] Added reference dates to `src/data/reference-dates.ts`
-- [ ] All tests pass (`npm test`)
-
-### Sources to Use
-
-**Recommended Sources:**
 - Nepal Panchanga Nirnayak Samiti (official)
 - Nepal Government publications
-- Verified existing libraries with proven track records
 - Historical records and newspapers
 
-**Avoid:**
-- Unverified online calendars
-- Single-source data
-- Data without clear provenance
+### Quick Validation
 
-## Contributing Code
+Before submitting, check:
+- [ ] Each month has 29-32 days
+- [ ] Year has exactly 12 months
+- [ ] Total days in year is between 354-385
 
-### Code Style
+That's it! You've contributed to the Nepali developer community.
 
-- Use TypeScript strict mode
-- Follow existing code patterns
-- Add JSDoc comments for public APIs
-- Write tests for new features
+---
 
-### Testing Requirements
+## For Developers
 
-- Unit tests for all new functions
-- Integration tests for conversions
-- Minimum 95% code coverage
-- All existing tests must pass
+This section covers code contributions, development setup, and technical guidelines.
 
-### Pull Request Process
+### Development Setup
 
-1. Update documentation for API changes
-2. Add tests for new functionality
-3. Ensure all tests pass locally
-4. Update README if needed
-5. Link related issues in PR description
-
-## Reporting Issues
-
-### Bug Reports
-
-Include:
-- Description of the issue
-- Steps to reproduce
-- Expected behavior
-- Actual behavior
-- Version information
-- Sample code
-
-### Feature Requests
-
-Include:
-- Clear description of the feature
-- Use cases and benefits
-- Proposed API (if applicable)
-- Willingness to implement
-
-### Data Errors
-
-For incorrect calendar data:
-- Specify the date (BS and/or AD)
-- Provide correct value
-- Include 2+ sources for correction
-- Explain the impact
-
-## Development Setup
-
-### Prerequisites
-
-- Node.js 16 or higher
-- npm, yarn, or pnpm
-
-### Setup Steps
+**Prerequisites:** Node.js 16+
 
 ```bash
 # Clone your fork
@@ -141,87 +71,59 @@ npm install
 # Run tests
 npm test
 
-# Run tests with coverage
-npm run test:coverage
-
-# Build the package
+# Build
 npm run build
-
-# Lint TypeScript
-npm run lint
 ```
 
 ### Project Structure
 
 ```
 nepali-dates/
+├── data/               # Calendar data JSON files (edit these!)
 ├── src/
-│   ├── data/           # Calendar data and reference dates
 │   ├── converters/     # BS/AD conversion logic
 │   ├── utils/          # Helper functions
 │   ├── types/          # TypeScript types
 │   └── index.ts        # Main entry point
 ├── tests/              # Test files
-├── docs/               # Documentation
-└── scripts/            # Utility scripts
+└── docs/               # Documentation
 ```
+
+### Code Style
+
+- TypeScript strict mode
+- Follow existing patterns
+- JSDoc comments for public APIs
+- Minimum 95% test coverage
 
 ### Running Tests
 
 ```bash
-# Run all tests
-npm test
-
-# Watch mode
-npm run test:watch
-
-# Coverage report
-npm run test:coverage
+npm test              # Run all tests
+npm run test:watch    # Watch mode
+npm run test:coverage # Coverage report
 ```
 
-### Validation Script
+### Pull Request Process
 
-Validate calendar data integrity:
+1. Create a feature branch (`git checkout -b feature/your-feature`)
+2. Make changes and add tests
+3. Run `npm test` to ensure all tests pass
+4. Submit PR with clear description
 
-```bash
-npm run validate-data
-```
+### Reporting Issues
 
-## Community Guidelines
+**Bug reports** - Include: description, steps to reproduce, expected vs actual behavior, version info
 
-### Communication
+**Data errors** - Include: the incorrect date, correct value, 2+ sources as proof
 
-- Be clear and concise
-- Provide context and examples
-- Be patient and respectful
-- Help others learn
+**Feature requests** - Include: use case, proposed API, willingness to implement
 
-### Quality Standards
+---
 
-- Write clear, maintainable code
-- Document complex logic
-- Test edge cases
-- Consider performance
+## Code of Conduct
 
-### Review Process
-
-- All PRs require review
-- Address review feedback
-- Keep PRs focused and small
-- Update based on suggestions
-
-## Recognition
-
-Contributors will be acknowledged in:
-- README.md acknowledgments section
-- Release notes for significant contributions
-- GitHub contributors page
-
-## Questions?
-
-- Open an issue for questions
-- Check existing issues and PRs first
-- Provide context when asking
+Be respectful, inclusive, and considerate. We're building this for the community.
 
 ## License
 
