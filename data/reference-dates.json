@@ -45,6 +45,10 @@
     {
       "bs": { "year": 2083, "month": 1, "day": 1 },
       "ad": { "year": 2026, "month": 4, "day": 14 }
+    },
+    {
+      "bs": { "year": 2083, "month": 7, "day": 18 },
+      "ad": { "year": 2026, "month": 11, "day": 4 }
     }
   ]
 }

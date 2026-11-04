@@ -19,6 +19,14 @@ describe('bsToAd', () => {
     });
   });
 
+  it('should place 18 Kartik 2083 on Wednesday, November 4, 2026', () => {
+    const result = bsToAd(2083, 7, 18, { format: 'array' }) as [number, number, number];
+    expect(result).toEqual([2026, 11, 4]);
+    const [year, month, day] = result;
+    // UTC keeps the weekday check independent of the machine's timezone.
+    expect(new Date(Date.UTC(year, month - 1, day)).getUTCDay()).toBe(3); // Wednesday
+  });
+
   describe('format options', () => {
     it('should return date in ISO format', () => {
       const result = bsToAd(2000, 1, 1, { format: 'iso' });
